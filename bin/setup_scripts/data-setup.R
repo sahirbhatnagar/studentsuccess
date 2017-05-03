@@ -13,6 +13,13 @@ library(ggplot2)
 subdir<-paste0(getwd())
 '%NI%' <- function(x,y)!('%in%'(x,y))
 
+admission<-admission.Dawson
+etudiant_session<-etudiant_session.Dawson
+inscription<-inscription.Dawson
+student_certification<-student_certification.Dawson
+etudiant<-etudiant.Dawson
+cours<-cours.Dawson
+
 # keep admission records for only those who started or ended after Fall 2010
 admission.recent<-admission[ansessionDebut>=earliest.ansession,
                             .(student_number,ansessionDebut,program,population,speAdmission)]
@@ -189,9 +196,7 @@ courses<-demo[courses]
 
 
 
-save(courses,admission.recent,student_certification.recent,
-     sessions,inscription.clean,quitters,current,finishers,
-     last.term.minus.1,last.term.minus.1.quitters,
-     file = 'label-drop-outs.Rdata')
+save(courses,
+     file = 'data/course_records_Dawson.Rdata')
 rm(list=ls())
-load('label-drop-outs.Rdata')
+load('data/course_records_Dawson.Rdata')
